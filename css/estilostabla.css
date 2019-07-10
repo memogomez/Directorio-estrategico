@@ -1,0 +1,36 @@
+h1 {
+	text-align: center;
+	color: #12374C;
+	font-family: "Economica", serif; 
+	font-size: 40px;
+}
+.button {
+	font-family: "Economica", serif; 
+	text-decoration: none;
+	background-color: #95BD45;
+	color: #FFFFFF;
+	border-radius: 1rem;
+	padding: 10px 50px 10px 50px;
+	
+}
+.tabla {
+	background-color: #95BD45;
+	font-family: "Economica", serif;
+	color: #FFFFFF;
+	text-align: center;
+}
+.encabezado {
+	background-color: #1C5372;
+	color: #FFFFFF;
+	text-align: center;
+}
+.btnaccion {
+	background-color: #1C5372;
+}
+.emergente{
+	font-family: "Economica", serif
+}
+.letramodal{
+	text-align: center;
+	font-size: 15px;
+}

@@ -1,0 +1,36 @@
+.fondo{
+	background-size: 100% 100%;
+	background-attachment: fixed;	
+	margin-top: 230px;
+}
+.logo{
+	display: block;
+	margin:0 auto 0 auto;
+	line-height: 200px;
+}
+.container{
+	text-align: center;
+	color: #12374C;
+	font-family: "Economica", serif; 
+	font-size: 30px;
+}
+.ligas{
+	text-align: center;
+	color: #12374C;
+	font-family: "Economica", serif;
+	
+}
+.titulo{
+	text-align: center;
+	color: #FFFFFF;
+
+}
+.button {
+	font-family: "Economica", serif; 
+	text-decoration: none;
+	background-color: #95BD45;
+	color: #FFFFFF;
+	border-radius: 1rem;
+	padding: 10px 50px 10px 50px;
+	
+}
