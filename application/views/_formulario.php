@@ -6,7 +6,7 @@
 	</div>
 
 	<div class='form-group'>
-		<label>Imagen</label>
+		<label>Imagen del contacto</label>
 		<input type="file"  name="imagen" required="required" value='<?=$contacto['imagen']?>'/>
 	</div>
 
