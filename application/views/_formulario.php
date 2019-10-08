@@ -1,4 +1,4 @@
-<form id="<?=$idform?>">
+<form action="" method="post" enctype="multipart/form-data" id="<?=$idform?>">
 	
 	<div class='form-group'>
 		<label>Entidad</label>
@@ -7,7 +7,8 @@
 
 	<div class='form-group'>
 		<label>Imagen del contacto</label>
-		<input type="file"  name="imagen" required="required" value='<?=$contacto['imagen']?>'/>
+		<input type="file"  name="upload" required="required" value='<?=$contacto['imagen']?>'/>
+		<input type="submit" value="Submit">
 	</div>
 
 	<div class='form-group'>

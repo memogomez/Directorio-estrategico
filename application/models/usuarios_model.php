@@ -22,6 +22,7 @@ class Usuarios_model extends CI_Model
 	public function add_user()
 	{
 		$this->db->insert('usuarios', array(
+			'tipo'=>$this->input->post('tipo',TRUE),
 			'usuario'=>$this->input->post('user',TRUE),
 			'pass'=>$this->input->post('pass',TRUE),
 			'correo'=>$this->input->post('correo',TRUE),
@@ -35,11 +36,13 @@ class Usuarios_model extends CI_Model
 		));
 		if($consulta->num_rows() == 1)
 		{
-			return true;
+			$datosDeUsuario=$consulta->row();
+			return $datosDeUsuario->tipo;
+			//return $consulta[0]["tipo"];
 		}
 		else
 		{
-			return false;
+			return -1;
 		}
 	}
 }

@@ -46,7 +46,15 @@
 		<?php endif;?>
 
 		<form name="form_reg" action="<?= base_url().'usuarios/registro_very'?>" method="POST">
-			
+			<div class="etiqueta">
+				<label for="tipo">Tipo</label>
+			</div>
+			<div>
+			<select name="tipo">
+				<option value=0>Administrador</option>
+				<option value=1>Consulta</option>
+			</select>
+			</div>
 			<div class="etiqueta">
 				<label for="usuario">Usuario</label>
 			</div>

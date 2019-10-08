@@ -12,6 +12,7 @@
 		<button class="button btnfiltrar">Buscar</button>
 		<button class="button btnlimpiar">Limpiar</button>
 		<button class="button nuevoContacto pull-right"><span> <img style="width:20px; height:20px;" class="logo" src="css/images/usuarioBlanco.png"></span> Nuevo Contacto</button>
+		<button class="button cerrarSesion pull-right"><span> <img style="width:20px; height:20px;" class="logo" src="css/images/usuarioBlanco.png"></span> Cerrar Sesión</button>
 	</div>
 
 
@@ -50,9 +51,9 @@
 					
 					<button class="btnaccion btn btn-primary btn-sm btnver" data-id="<?=$contacto['id']?>"><span> <img style="width:20px; height:20px;" class="logo" src="css/images/lupaBlanca.png"></span> Ver</button>
 
-					<button class="btnaccion btn btn-primary btn-sm btnedit" data-id="<?=$contacto['id']?>"><span> <img style="width:20px; height:20px;" class="logo" src="css/images/lápizBlanco.png"></span> Editar</button>
+					<button class="btnaccion btn btn-primary btn-sm btnedit" <?php echo ($tipoDeUsuario==1 ? "disabled":"");?> data-id="<?=$contacto['id']?>"><span> <img style="width:20px; height:20px;" class="logo" src="css/images/lápizBlanco.png"></span> Editar</button>
 
-					<button class="btn btn-danger btn-sm btnEliminar" data-id="<?=$contacto['id']?>"><span><img style="width:20px; height:20px;" class="logo" src="css/images/tacheBlanco.png"></span> Eliminar</button></td>
+					<button class="btn btn-danger btn-sm btnEliminar" <?php echo ($tipoDeUsuario==1 ? "disabled":"");?> data-id="<?=$contacto['id']?>"><span><img style="width:20px; height:20px;" class="logo" src="css/images/tacheBlanco.png"></span> Eliminar</button></td>
 				</tr>
 				<?php			
 			}

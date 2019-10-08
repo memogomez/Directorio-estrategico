@@ -9,6 +9,8 @@ class Panel extends CI_Controller
 	}
 	public function index()
 	{
+		require("sesiones.php");
+		validaSesion();
 		$this->load->view('nivel');
 	}
 	function very_sesion()

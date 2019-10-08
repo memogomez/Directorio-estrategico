@@ -11,7 +11,7 @@ class Inicio extends CI_Controller
 	{
 		$this->load->view('directorio_estrategico');
 	}
-	
+
 }
 
 

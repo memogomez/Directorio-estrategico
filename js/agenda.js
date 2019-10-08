@@ -112,9 +112,16 @@ $( document ).ready(function(){
 		});
 		
 	});
+
 	$("body").on('click', '.btnlimpiar', function () {
 		location.reload();
 		
+	});
+
+	$("body").on('click', '.cerrarSesion', function () {
+		document.cookie = 'tipoUsuario=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+		document.cookie = 'EstaLogeado=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+		window.location.href = base_url + 'inicio';
 	});
 
 

@@ -6,6 +6,8 @@ class Principal extends CI_Controller
 {
 	public function index()
 	{
+		require("sesiones.php");
+		validaSesion();
 		$this->load->view('header');
 		$data['contactos']=$this->consultas->contactos();
 		$this->load->view('main', $data);
@@ -31,14 +33,14 @@ class Principal extends CI_Controller
 			'textbtn' => "Agregar",
 			'contacto' => $contacto
 		);
-		$this->load->view('_formulario', $datos);
+		$this->load->view('_formulario', $datos);	
 	}
 
 	public function guardarContacto()
 	{
 		$datos = array(
 			'entidad'=>$this->input->post('entidad'),
-			'imagen'=>$this->input->post('imagen'),
+			//'imagen'=>$this->input->post('imagen'),
 			'cargo'=>$this->input->post('cargo'),
 			'nombre'=>$this->input->post('nombre'),
 			'partido'=>$this->input->post('partido'),
@@ -46,7 +48,8 @@ class Principal extends CI_Controller
 			'inicio'=>$this->input->post('inicio'),
 			'fin'=>$this->input->post('fin'),
 		);
-
+		
+		$this->guardar_archivo();
 		$this->insertar->insertar('contactos',$datos);
 	}
 
@@ -100,9 +103,33 @@ class Principal extends CI_Controller
 	}
 	public function obtenerBusqueda(){
 		$contactos = $this->input->post('contactos'); 
+		$tipoDeUsuario=$_COOKIE["tipoUsuario"];
 		$data["contactos"] = $contactos;
+		$data["tipoDeUsuario"]= $tipoDeUsuario;
 		$this->load->view('main', $data);
 	}
+	private function guardar_archivo(){
+		$mi_archivo = 'upload';
+        $config['upload_path'] = "uploads/";
+       // $config['file_name'] = "nombre_archivo";
+        $config['allowed_types'] = "jpg|png";
+        $config['max_size'] = "50000";
+        $config['max_width'] = "2000";
+        $config['max_height'] = "2000";
 
+        $this->load->library('upload', $config);
+        
+        if (!$this->upload->do_upload($mi_archivo)) {
+            //*** ocurrio un error
+            //$data['uploadError'] = $this->upload->display_errors();
+            echo $this->upload->display_errors();
+            return;
+        }
+
+        var_dump($this->upload->data());
+	}
+	public function cerrarSes(){
+		redirect(base_url().'inicio');
+	}
 }
 ?>

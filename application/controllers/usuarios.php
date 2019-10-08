@@ -76,12 +76,14 @@ class Usuarios extends CI_Controller
 		if($this->input->post('submit'))
 		{
 			$variable = $this->usuarios_model->very_sesion();
-			if($variable == true)
+			if($variable != -1)
 			{
 				$variables = array(
 					'usuario' => $this->input->post('user')
 				);
 				$this->session->set_userdata($variables);
+				setcookie("EstaLogeado", "1", time()+60*60*24, '/');
+				setcookie("tipoUsuario", $variable, time()+60*60*24, '/');
 				redirect(base_url().'panel');
 			}
 			else
