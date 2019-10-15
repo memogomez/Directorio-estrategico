@@ -40,7 +40,9 @@
 			<tr>
 				<!--<td><?=$contacto['id']?></td>-->
 				<td><?=$contacto['entidad']?></td>
-				<td><?=$contacto['imagen']?></td>
+				<td>
+					<img src="./uploads/<?=$contacto['imagen']?>" height="80" width="80">
+				</td>
 				<td><?=$contacto['cargo']?></td>
 				<td><?=$contacto['nombre']?></td>
 				<td><?=$contacto['partido']?></td>

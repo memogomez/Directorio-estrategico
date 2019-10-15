@@ -37,10 +37,24 @@ class Principal extends CI_Controller
 	}
 
 	public function guardarContacto()
-	{
+	{	
+		$this->load->helper(array('form', 'url'));
+		$config['upload_path'] = './uploads/'; 
+		$config['overwrite']=FALSE;
+		$config['allowed_types'] = 'jpg|png|jpeg';
+		$this->load->library('upload');
+		$this->upload->initialize($config);
+		if ($this->upload->do_upload('userfile'))  {
+			$infoimagen=$this->upload->data();
+		}else{
+			$infoimagen['file_name']= $this->upload->display_errors();
+		}
+		//$nombre= $_FILES["imagen"]["name"];
+
+
 		$datos = array(
 			'entidad'=>$this->input->post('entidad'),
-			//'imagen'=>$this->input->post('imagen'),
+			'imagen'=>$infoimagen['file_name'],
 			'cargo'=>$this->input->post('cargo'),
 			'nombre'=>$this->input->post('nombre'),
 			'partido'=>$this->input->post('partido'),
@@ -48,9 +62,9 @@ class Principal extends CI_Controller
 			'inicio'=>$this->input->post('inicio'),
 			'fin'=>$this->input->post('fin'),
 		);
-		
-		$this->guardar_archivo();
 		$this->insertar->insertar('contactos',$datos);
+		header('Location: http://localhost/directorio/principal');
+
 	}
 
 
@@ -107,26 +121,6 @@ class Principal extends CI_Controller
 		$data["contactos"] = $contactos;
 		$data["tipoDeUsuario"]= $tipoDeUsuario;
 		$this->load->view('main', $data);
-	}
-	private function guardar_archivo(){
-		$mi_archivo = 'upload';
-        $config['upload_path'] = "uploads/";
-       // $config['file_name'] = "nombre_archivo";
-        $config['allowed_types'] = "jpg|png";
-        $config['max_size'] = "50000";
-        $config['max_width'] = "2000";
-        $config['max_height'] = "2000";
-
-        $this->load->library('upload', $config);
-        
-        if (!$this->upload->do_upload($mi_archivo)) {
-            //*** ocurrio un error
-            //$data['uploadError'] = $this->upload->display_errors();
-            echo $this->upload->display_errors();
-            return;
-        }
-
-        var_dump($this->upload->data());
 	}
 	public function cerrarSes(){
 		redirect(base_url().'inicio');

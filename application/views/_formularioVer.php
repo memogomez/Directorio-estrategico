@@ -7,7 +7,7 @@
 
 	<div class='form-group letramodal'>
 		<label>Imagen</label>
-		<?=$contacto['imagen']?>
+		<img src="./uploads/<?=$contacto['imagen']?>" height="60" width="60">
 	</div>
 
 	<div class='form-group letramodal'>

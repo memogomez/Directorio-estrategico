@@ -1,4 +1,5 @@
-<form action="" method="post" enctype="multipart/form-data" id="<?=$idform?>">
+<!--<form action="" method="post" enctype="multipart/form-data" id="<?=$idform?>">-->
+<?php echo form_open_multipart('principal/guardarContacto');?>
 	
 	<div class='form-group'>
 		<label>Entidad</label>
@@ -7,8 +8,7 @@
 
 	<div class='form-group'>
 		<label>Imagen del contacto</label>
-		<input type="file"  name="upload" required="required" value='<?=$contacto['imagen']?>'/>
-		<input type="submit" value="Submit">
+		<input type="file"  name="userfile" id="userfile" required="required" accept="image/x-png,image/jpg, image/jpeg"/>
 	</div>
 
 	<div class='form-group'>
