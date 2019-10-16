@@ -27,7 +27,7 @@
 			<th class="encabezado bg-primary">Imagen</th>
 			<th class="encabezado bg-primary">Cargo</th>
 			<th class="encabezado bg-primary">Nombre</th>
-			<th class="encabezado bg-primary">Partido</th>
+		<!--	<th class="encabezado bg-primary">Partido</th>-->
 		<!--<th class="encabezado bg-primary">Experiencia Publica Anterior</th>
 		<th class="encabezado bg-primary">Inicio de Mandato</th>
 		<th class="encabezado bg-primary">Fin de Mandato</th>-->
@@ -45,7 +45,7 @@
 				</td>
 				<td><?=$contacto['cargo']?></td>
 				<td><?=$contacto['nombre']?></td>
-				<td><?=$contacto['partido']?></td>
+				<!--<td><?=$contacto['partido']?></td>-->
 				<!--<td><?=$contacto['experiencia']?></td>
 				<td><?=$contacto['inicio']?></td>
 				<td><?=$contacto['fin']?></td>-->

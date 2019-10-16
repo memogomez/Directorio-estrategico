@@ -16,7 +16,7 @@
 		<a class="button" title="Nivel Municipal">Municipal</a>
 	</form>
 	<div class="container">
-		<h1>Sector Privadoo</h1>
+		<h1>Sector Privado</h1>
 	</div>
 	<form class="ligas">
 		<a class="button" title="Nivel Municipal">Empresas</a>

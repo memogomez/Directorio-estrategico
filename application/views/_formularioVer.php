@@ -6,8 +6,7 @@
 	</div>
 
 	<div class='form-group letramodal'>
-		<label>Imagen</label>
-		<img src="./uploads/<?=$contacto['imagen']?>" height="60" width="60">
+		<img src="./uploads/<?=$contacto['imagen']?>" height="100" width="100">
 	</div>
 
 	<div class='form-group letramodal'>
@@ -38,6 +37,11 @@
 	<div class='form-group letramodal'>
 		<label>Fin de Mandato</label>
 		<?=$contacto['fin']?>
+	</div>
+
+	<div class='form-group letramodal'>
+		<label>Reseña</label>
+		<?=$contacto['resena']?>
 	</div>
 
 	<input type="hidden" name="id" value="<?=$contacto['id']?>">
