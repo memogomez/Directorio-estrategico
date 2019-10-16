@@ -50,7 +50,7 @@ class Consultas extends CI_Model
 
 
 	public function contactos(){
-		$query = $this->db->query("SELECT id, entidad, imagen, cargo, nombre, partido, experiencia, inicio, fin FROM contactos");
+		$query = $this->db->query("SELECT id, entidad, imagen, cargo, nombre, partido, imagenpartido, experiencia, inicio, fin FROM contactos");
 		if ($query->num_rows() > 0){
 			return $query->result_array();
 		}

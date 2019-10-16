@@ -24,6 +24,7 @@ class Principal extends CI_Controller
 			'cargo'=>'',
 			'nombre'=>'',
 			'partido'=>'',
+			'imagenpartido'=>'',
 			'experiencia'=>'',
 			'inicio'=>'',
 			'fin'=>'',
@@ -51,6 +52,17 @@ class Principal extends CI_Controller
 			$infoimagen['file_name']= $this->upload->display_errors();
 		}
 		//$nombre= $_FILES["imagen"]["name"];
+		$this->load->helper(array('form', 'url'));
+		$config['upload_path'] = './uploads/'; 
+		$config['overwrite']=FALSE;
+		$config['allowed_types'] = 'jpg|png|jpeg';
+		$this->load->library('upload');
+		$this->upload->initialize($config);
+		if ($this->upload->do_upload('partidofile'))  {
+			$partidoimagen=$this->upload->data();
+		}else{
+			$partidoimagen['file_name']= $this->upload->display_errors();
+		}
 
 
 		$datos = array(
@@ -59,6 +71,7 @@ class Principal extends CI_Controller
 			'cargo'=>$this->input->post('cargo'),
 			'nombre'=>$this->input->post('nombre'),
 			'partido'=>$this->input->post('partido'),
+			'imagenpartido'=>$partidoimagen['file_name'],
 			'experiencia'=>$this->input->post('experiencia'),
 			'inicio'=>$this->input->post('inicio'),
 			'fin'=>$this->input->post('fin'),
@@ -98,6 +111,19 @@ class Principal extends CI_Controller
 		}else{
 			$infoimagen['file_name']= $this->upload->display_errors();
 		}
+		//Aquí elimino la imagen anterior
+		unlink('./uploads/'.$this->input->post('imagenpartido'));
+		$this->load->helper(array('form', 'url'));
+		$config['upload_path'] = './uploads/'; 
+		$config['overwrite']=FALSE;
+		$config['allowed_types'] = 'jpg|png|jpeg';
+		$this->load->library('upload');
+		$this->upload->initialize($config);
+		if ($this->upload->do_upload('partidofile'))  {
+			$partidoimagen=$this->upload->data();
+		}else{
+			$partidoimagen['file_name']= $this->upload->display_errors();
+		}
 		//Aqui actualizo la info en base de datos
 		$idcontacto = $this->input->post('id');
 		$datos = array(
@@ -106,6 +132,7 @@ class Principal extends CI_Controller
 			'cargo'=>$this->input->post('cargo'),
 			'nombre'=>$this->input->post('nombre'),
 			'partido'=>$this->input->post('partido'),
+			'imagenpartido'=>$partidoimagen['file_name'],
 			'experiencia'=>$this->input->post('experiencia'),
 			'inicio'=>$this->input->post('inicio'),
 			'fin'=>$this->input->post('fin'),

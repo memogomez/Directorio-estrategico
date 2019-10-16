@@ -23,6 +23,10 @@
 		<label>Partido</label>
 		<?=$contacto['partido']?>
 	</div>
+
+	<div class='form-group letramodal'>
+		<img src="./uploads/<?=$contacto['imagenpartido']?>" height="100" width="100">
+	</div>
 	
 	<div class='form-group letramodal'>
 		<label>Experiencia</label>

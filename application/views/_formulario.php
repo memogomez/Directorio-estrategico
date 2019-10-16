@@ -63,6 +63,12 @@
 	</div>
 	
 	<div class='form-group'>
+		<label>Imagen del Partido</label>
+		<input type="file"  name="partidofile" id="partidofile" required="required" accept="image/x-png,image/jpg, image/jpeg"/>
+		<input type="hidden" name="imagenpartido" value="<?=$contacto['imagenpartido']?>">
+	</div>
+	
+	<div class='form-group'>
 		<label>Experiencia</label>
 		<input type="text" class="form-control" placeholder="Experiencia" name="experiencia" maxlength='50' required="required" value='<?=$contacto['experiencia']?>'/>
 	</div>
