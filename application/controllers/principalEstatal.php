@@ -2,15 +2,15 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Principal extends CI_Controller
+class PrincipalEstatal extends CI_Controller
 {
 	public function index()
 	{
 		require("sesiones.php");
 		validaSesion();
 		$this->load->view('header');
-		$data['contactos']=$this->consultas->contactos();
-		$this->load->view('main', $data);
+		$data['contactosestatal']=$this->consultas->contactosestatal();
+		$this->load->view('mainEstatal', $data);
 		$this->load->view('footer');
 	}
 
@@ -35,7 +35,7 @@ class Principal extends CI_Controller
 			'textbtn' => "Agregar",
 			'contacto' => $contacto
 		);
-		$this->load->view('_formulario', $datos);	
+		$this->load->view('_formularioEstatal', $datos);	
 	}
 
 	public function guardarContacto()
@@ -77,22 +77,22 @@ class Principal extends CI_Controller
 			'fin'=>$this->input->post('fin'),
 			'resena'=>$this->input->post('resena'),
 		);
-		$this->insertar->insertar('contactos',$datos);
-		header('Location: http://localhost/directorio/principal');
+		$this->insertar->insertar('contactosestatal ',$datos);
+		header('Location: http://localhost/directorio/principalEstatal');
 
 	}
 
-
+	
 	public function formEditContacto(){
 		$idcontacto = $this->input->post('idcontacto');
-		$contacto = $this->consultas->consultaGral('contactos', 'id', $idcontacto, '2');
+		$contacto = $this->consultas->consultaGral('contactosestatal', 'id', $idcontacto, '2');
 
 		$datos = array(
 			'idform' => "formEditContacto",
 			'textbtn' => "Editar",
 			'contacto' => $contacto
 		);
-		$this->load->view('_formulario',$datos);
+		$this->load->view('_formularioEstatal',$datos);
 
 	}
 
@@ -143,19 +143,19 @@ class Principal extends CI_Controller
 			'fin'=>$this->input->post('fin'),
 			'resena'=>$this->input->post('resena'),
 		);
-		$this->insertar->actualizar('contactos',$datos,array('id'=> $idcontacto ));
-		header('Location: http://localhost/directorio/principal');
+		$this->insertar->actualizar('contactosestatal',$datos,array('id'=> $idcontacto ));
+		header('Location: http://localhost/directorio/principalEstatal');
 	}
 
 	public function eliminarcontacto(){
 		$idcontacto = $this->input->post('idcontacto');
-		$this->delete->eliminarId('contactos',$idcontacto);
+		$this->delete->eliminarId('contactosestatal',$idcontacto);
 
 	}
 
 	public function formVerContacto(){
 		$idcontacto = $this->input->post('idcontacto');
-		$contacto = $this->consultas->consultaGral('contactos', 'id', $idcontacto, '2');
+		$contacto = $this->consultas->consultaGral('contactosestatal', 'id', $idcontacto, '2');
 
 		$datos = array(
 			'idform' => "formEditContacto",
@@ -168,15 +168,11 @@ class Principal extends CI_Controller
 	}
 
 	public function obtenerBusqueda(){
-		$contactos = $this->input->post('contactos'); 
+		$contactos = $this->input->post('contactosestatal'); 
 		$tipoDeUsuario=$_COOKIE["tipoUsuario"];
-		$data["contactos"] = $contactos;
+		$data["contactosestatal"] = $contactos;
 		$data["tipoDeUsuario"]= $tipoDeUsuario;
-		$this->load->view('main', $data);
-	}
-	
-	public function cerrarSes(){
-		redirect(base_url().'inicio');
+		$this->load->view('mainEstatal', $data);
 	}
 
 	public function tomarDecision(){

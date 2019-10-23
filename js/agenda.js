@@ -1,4 +1,5 @@
 $( document ).ready(function(){
+	//Este Apartado es para nivel Federal
 	document.getElementById("mostrar").hidden = true;
 	$("body").on('click', '.nuevoContacto', function () {
 		$.ajax({
@@ -123,6 +124,117 @@ $( document ).ready(function(){
 		document.cookie = 'EstaLogeado=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
 		window.location.href = base_url + 'inicio';
 	});
+//Este Apartado es para nivel Estatal
+	$("body").on('click', '.nuevoContactoEstatal', function () {
+		$.ajax({
+			url: base_url + 'principalEstatal/formAddContacto',
+			data: {},
+			type: 'POST',
+			success: function (html){
+				$(".modal-header").html('<span class="text-rigth" style="font-size:17px">Nuevo Contacto</span><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><font color="#FF0000"><i class="fa fa-times" aria-hidden="true"></i></font></span></button><br>');
+				$(".modal-body").html(html);
+				$(".modal-footer").html('');
+				$("#Modal").modal("show");
+			}
+		});
+	});
 
+	$("body").on('submitEstatal', '#formNuevoContacto', function(){
+		$("#Modal").modal("hide");
+		$.ajax({
+			url: base_url + 'principalEstatal/guardarContacto',
+			data: $(this).serialize(),
+			type: 'POST',
+			success: function (resultado){
+				alert("Tu contacto se ha registrado correctamente");
+				location.reload();
+			}
+		});
+		return false;
+	});
+
+	$("body").on('click', '.btneditEstatal', function () {
+		var idcontacto = $(this).data("id");
+		$.ajax({
+			url: base_url + 'principalEstatal/formEditContacto',
+			data: {idcontacto:idcontacto},
+			type: 'POST',
+			success: function (html){
+				$(".modal-header").html('<span class="text-rigth" style="font-size:17px">Editar Contacto</span><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><font color="#FF0000"><i class="fa fa-times" aria-hidden="true"></i></font></span></button><br>');
+				$(".modal-body").html(html);
+				$(".modal-footer").html('');
+				$("#Modal").modal("show");
+			}
+		});
+	});
+
+	$("body").on('submitEstatal', '#formEditContacto', function(){
+		$("#Modal").modal("hide");
+		$.ajax({
+			url: base_url + 'principalEstatal/editarcontacto',
+			data: $(this).serialize(),
+			type: 'POST',
+			success: function (resultado){
+				location.reload();
+			}
+		});
+		return false;
+	});
+
+	$("body").on('click', '.btnEliminarEstatal', function () {
+		console.log("Eliminarestatal")
+		$('body').html('');
+		var idcontacto = $(this).data("id");
+		$.ajax({
+			url: base_url + 'principalEstatal/eliminarcontacto',
+			data: {idcontacto:idcontacto},
+			type: 'POST',
+			success: function (html){	
+				location.reload();
+			}
+		});
+		$(this).closest('tr').remove();
+	});
+
+	$("body").on('click', '.btnverEstatal', function () {
+		var idcontacto = $(this).data("id");
+		$.ajax({
+			url: base_url + 'principalEstatal/formVerContacto',
+			data: {idcontacto:idcontacto},
+			type: 'POST',
+			success: function (html){
+				$(".modal-header").html('<span class="text-rigth" style="font-size:17px">Ver Contacto</span><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><font color="#FF0000"><i class="fa fa-times" aria-hidden="true"></i></font></span></button><br>');
+				$(".modal-body").html(html);
+				$(".modal-footer").html('');
+				$("#Modal").modal("show");
+			}
+		});
+	});
+
+	$("body").on('click', '.btnfiltrarEstatal', function () {
+		var filtrocargo = $("#filtrocargo").val();
+		var filtronombre = $("#filtronombre").val();
+		var filtropartido = $("#filtropartido").val();
+		
+
+		if(filtrocargo!==""){
+			contactosestatal = contactosestatal.filter(c=>c.cargo.toLowerCase().includes(filtrocargo.toLowerCase()));
+		}
+		if(filtronombre!==""){
+			contactosestatal = contactosestatal.filter(c=>c.nombre.toLowerCase().includes(filtronombre.toLowerCase()));
+		}
+		if(filtropartido!==""){
+			contactosestatal = contactosestatal.filter(c=>c.partido.toLowerCase().includes(filtropartido.toLowerCase()));
+		}
+		$.ajax({
+			url: base_url + 'principalEstatal/obtenerBusqueda',
+			data: {contactosestatal:contactosestatal},
+			type: 'POST',
+			success: function (html){	
+				$('#tablaP').html(html);
+			}
+		});
+		
+	});
 
 });

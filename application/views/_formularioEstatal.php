@@ -1,7 +1,6 @@
-<!--<form action="" method="post" enctype="multipart/form-data" id="<?=$idform?>">-->
-<?php echo form_open_multipart('principal/tomarDecision');?>
+<?php echo form_open_multipart('principalEstatal/tomarDecision');?>
 	
-	<div class='form-group'>
+<div class='form-group'>
 		<label>Entidad</label>
 		<select type="text" class="form-control" name="entidad" required="required">
 			<?php 
@@ -94,7 +93,7 @@
 
 	<input type="hidden" name="id" value="<?=$contacto['id']?>">
 
-	<button type="submit" class="btn btn-success pull-right"><?=$textbtn?></button>
+	<button type="submitEstatal" class="btn btn-success pull-right"><?=$textbtn?></button>
 
 	<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancelar</button>
 

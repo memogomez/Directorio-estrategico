@@ -12,7 +12,7 @@
 	</div>
 	<form class="ligas">
 		<a class="button" href="<?= base_url().'principal'?>" title="Nivel Federal">Federal</a>	
-		<a class="button" title="Nivel Estatal">Estatal</a>
+		<a class="button" href="<?= base_url().'principalEstatal'?>" title="Nivel Estatal">Estatal</a>
 		<a class="button" title="Nivel Municipal">Municipal</a>
 	</form>
 	<div class="container">

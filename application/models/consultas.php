@@ -59,6 +59,16 @@ class Consultas extends CI_Model
 		}
 
 	}
+	public function contactosestatal(){
+		$query = $this->db->query("SELECT id, entidad, imagen, cargo, nombre, partido, imagenpartido, experiencia, inicio, fin FROM contactosestatal");
+		if ($query->num_rows() > 0){
+			return $query->result_array();
+		}
+		else{
+			return FALSE;
+		}
+
+	}
 
 
 
