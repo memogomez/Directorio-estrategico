@@ -19,7 +19,7 @@
 		<h1>Sector Privado</h1>
 	</div>
 	<form class="ligas">
-		<a class="button" title="Nivel Municipal">Empresas</a>
+		<a class="button" href="<?= base_url().'principalEmpresas'?>" title="Empresas">Empresas</a>
 	</form>
 </body>
 </html>

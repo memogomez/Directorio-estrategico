@@ -280,7 +280,6 @@ $( document ).ready(function(){
 	});
 
 	$("body").on('click', '.btnEliminarMunicipal', function () {
-		console.log("Eliminarestatal")
 		$('body').html('');
 		var idcontacto = $(this).data("id");
 		$.ajax({
@@ -327,6 +326,105 @@ $( document ).ready(function(){
 		$.ajax({
 			url: base_url + 'principalMunicipal/obtenerBusqueda',
 			data: {contactosmunicipal:contactosmunicipal},
+			type: 'POST',
+			success: function (html){	
+				$('#tablaP').html(html);
+			}
+		});
+		
+	});
+	//Este Apartado es para nivel Empresas/////////////////////////////////////////////////////////////////////////
+	$("body").on('click', '.nuevoContactoEmpresas', function () {
+		$.ajax({
+			url: base_url + 'principalEmpresas/formAddContacto',
+			data: {},
+			type: 'POST',
+			success: function (html){
+				$(".modal-header").html('<span class="text-rigth" style="font-size:17px">Nuevo Contacto</span><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><font color="#FF0000"><i class="fa fa-times" aria-hidden="true"></i></font></span></button><br>');
+				$(".modal-body").html(html);
+				$(".modal-footer").html('');
+				$("#Modal").modal("show");
+			}
+		});
+	});
+
+	$("body").on('submitEmpresas', '#formNuevoContacto', function(){
+		console.log("Si ente aqui");
+		$("#Modal").modal("hide");
+		$.ajax({
+			url: base_url + 'principalEmpresas/guardarContacto',
+			data: $(this).serialize(),
+			type: 'POST',
+			success: function (resultado){
+				alert("Tu contacto se ha registrado correctamente");
+				location.reload();
+			}
+		});
+		return false;
+	});
+
+	$("body").on('click', '.btneditEmpresas', function () {
+		var idcontacto = $(this).data("id");
+		$.ajax({
+			url: base_url + 'principalEmpresas/formEditContacto',
+			data: {idcontacto:idcontacto},
+			type: 'POST',
+			success: function (html){
+				$(".modal-header").html('<span class="text-rigth" style="font-size:17px">Editar Contacto</span><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><font color="#FF0000"><i class="fa fa-times" aria-hidden="true"></i></font></span></button><br>');
+				$(".modal-body").html(html);
+				$(".modal-footer").html('');
+				$("#Modal").modal("show");
+			}
+		});
+	});
+
+	$("body").on('click', '.btnEliminarEmpresas', function () {
+		$('body').html('');
+		var idcontacto = $(this).data("id");
+		$.ajax({
+			url: base_url + 'principalEmpresas/eliminarcontacto',
+			data: {idcontacto:idcontacto},
+			type: 'POST',
+			success: function (html){	
+				location.reload();
+			}
+		});
+		$(this).closest('tr').remove();
+	});
+
+	$("body").on('click', '.btnverEmpresas', function () {
+		var idcontacto = $(this).data("id");
+		$.ajax({
+			url: base_url + 'principalEmpresas/formVerContacto',
+			data: {idcontacto:idcontacto},
+			type: 'POST',
+			success: function (html){
+				$(".modal-header").html('<span class="text-rigth" style="font-size:17px">Ver Contacto</span><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><font color="#FF0000"><i class="fa fa-times" aria-hidden="true"></i></font></span></button><br>');
+				$(".modal-body").html(html);
+				$(".modal-footer").html('');
+				$("#Modal").modal("show");
+			}
+		});
+	});
+
+	$("body").on('click', '.btnfiltrarEmpresas', function () {
+		var filtrorazon = $("#filtrorazon").val();
+		var filtroestado = $("#filtroestado").val();
+		var filtrogiro = $("#filtrogiro").val();
+		
+
+		if(filtrorazon!==""){
+			contactosprivados = contactosprivados.filter(c=>c.razon_social.toLowerCase().includes(filtrorazon.toLowerCase()));
+		}
+		if(filtroestado!==""){
+			contactosprivados = contactosprivados.filter(c=>c.entidad.toLowerCase().includes(filtroestado.toLowerCase()));
+		}
+		if(filtrogiro!==""){
+			contactosprivados = contactosprivados.filter(c=>c.giro.toLowerCase().includes(filtrogiro.toLowerCase()));
+		}
+		$.ajax({
+			url: base_url + 'principalEmpresas/obtenerBusqueda',
+			data: {contactosprivados:contactosprivados},
 			type: 'POST',
 			success: function (html){	
 				$('#tablaP').html(html);

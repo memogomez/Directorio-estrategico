@@ -79,6 +79,16 @@ class Consultas extends CI_Model
 		}
 
 	}
+	public function contactosprivados(){
+		$query = $this->db->query("SELECT id, razon_social, entidad, municipio, domicilio, telefono, correo, giro FROM contactosprivados");
+		if ($query->num_rows() > 0){
+			return $query->result_array();
+		}
+		else{
+			return FALSE;
+		}
+
+	}
 
 
 }
